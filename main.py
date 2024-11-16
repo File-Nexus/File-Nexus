@@ -1,27 +1,42 @@
-import os
-import sys
 from file_scanner import FileScanner
 from file_organizer import FileOrganizer
-from ui import UserInterface
 
 class FileNexus:
     def __init__(self):
         self.scanner = FileScanner()
         self.organizer = FileOrganizer()
-        self.ui = UserInterface()
 
     def run(self):
         print("Welcome to FileNexus!")
         while True:
-            choice = self.ui.show_main_menu()
+            print("\nMain Menu:")
+            print("1. Scan Directory")
+            print("2. Organize Files")
+            print("3. Exit")
+            choice = input("Enter your choice: ")
+
             if choice == "1":
-                directory = self.ui.get_directory()
-                files = self.scanner.scan_directory(directory)
-                self.ui.display_files(files)
+                directory = input("Enter the directory to scan: ")
+                try:
+                    files = self.scanner.scan_directory(directory)
+                    print("\nScanned Files:")
+                    for file in files:
+                        print(file)
+                except Exception as e:
+                    print(f"Error: {e}")
             elif choice == "2":
-                rules = self.ui.get_organizer_rules()
-                directory = self.ui.get_directory()
-                self.organizer.organize(directory, rules)
+                directory = input("Enter the directory to organize: ")
+                rules = {
+                    ".txt": "TextFiles",
+                    ".jpg": "Images",
+                    ".png": "Images",
+                    ".pdf": "Documents",
+                }
+                try:
+                    self.organizer.organize(directory, rules)
+                    print("Files organized successfully!")
+                except Exception as e:
+                    print(f"Error: {e}")
             elif choice == "3":
                 print("Exiting FileNexus. Goodbye!")
                 break
