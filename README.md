@@ -56,8 +56,5 @@ We welcome contributions from the community! If you have ideas to enhance FileNe
 ## License
 FileNexus is distributed under the MIT License. Feel free to use, modify, and share the application under the terms of this license.
 
----
 
-## Support
-For assistance, feature requests, or feedback, please contact [your-email@example.com](mailto:your-email@example.com).
 
